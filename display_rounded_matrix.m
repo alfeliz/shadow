@@ -1,5 +1,3 @@
-## Copyright (C) 2008-2012 Ben Abbott
-##
 ## This file is part of Octave.
 ##
 ## Octave is distributed in the hope that it will be useful, but
@@ -56,7 +54,7 @@ function display_rounded_matrix(matrix, significative, outputFile)
   endif;
 
 #Intercolumns space:
-  space_between_columns = " "; #One space character.
+  space_between_columns = "	"; #One TAB.
 
 #Matrix rows and columns:
   row = rows(matrix);
