@@ -75,8 +75,8 @@ endfor
 printf ("\n");
 
 #String with the file name:
-filename = "500µm-15kV-All.txt"; %Testing purposes.
-%filename = arg_list{1}
+%filename = "500µm-15kV-All.txt"; %Testing purposes.
+filename = arg_list{1}
 
 [file, msg] = fopen(filename, "r");
 if (file == -1) 
@@ -160,13 +160,14 @@ acc_data = polyval(acc_pol,t); %Acceleration data.
 ###
 # Cheking graphs:
 ###
-figure("visible","off");
 #Smoothing and experimental data:
  graphics_toolkit ("gnuplot"); %To save LATEX symbols properly.
-plot(t,r,"*k",trad,r_smooth,"-g"); %Show the radial shock wave expansion and the smoothing.
+figure("visible","off");
+plot(t,r,"*k",trad,r_smooth,"-g", t, r_data,"-b" ); %Show the radial shock wave expansion, smoothing, and polynomial fit.
 title(filename,"interpreter","tex"); %Graph title: Filename of data.
 xlabel('t(\mus)',"interpreter","tex");%Graph labels
 ylabel("r(mm)");
+legend('Exp. data', 'Smoothing', 'Polynomial');
 graphname = horzcat(filename(1:index(filename,".","first")),"rad_smooth.jpg"); %Graph filename
 print(graphname); %Save a file with the graph
 close; %Close the graph window
