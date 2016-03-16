@@ -116,13 +116,14 @@ while ( (n<max_order) && (t_tot>0) ) %n is polynomial order.
 endwhile;
 
 [tmax,pos] = max(t_vector); %Better adjustment to the data when t is maximum.
+best_fit = ord + (pos-1);
 
-[padj, padjstruc] = polyfit(x,fx, pos-1);
+[padj, padjstruc] = polyfit(x,fx, best_fit );
 
 #Calculation of the statistical errors of the fit:
 	%From http://www.facstaff.bucknell.edu/maneval/help211/fitting.html
 R = padjstruc.R; %The "R", whatever this it...
-d = ( R' * R)\eye(pos); %The covariance matrix
+d = ( R' * R)\eye(best_fit+1); %The covariance matrix
 d = diag(d)'; %ROW vector of the diagonal elements.
 MSE = (padjstruc.normr^2)/ padjstruc.df; %Variance of the residuals.
 st_er = sqrt(MSE*d); %Standard errors
